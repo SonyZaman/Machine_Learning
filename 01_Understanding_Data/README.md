@@ -1,7 +1,5 @@
 # 01 - Understanding Data (Revision Notebook)
 
-This README serves as a quick, well-organized revision guide for the initial data exploration steps covered in `01_Understanding_Data.ipynb`. Use this to quickly review the core Pandas functions anytime!
-
 ## Preparation: Loading the Data
 Before asking any questions, we load our dataset (the Titanic dataset) using Pandas.
 ```python
@@ -57,4 +55,4 @@ df.select_dtypes(include=['number']).corr()['Survived']
 *(A positive value means they increase together, a negative value means as one goes up the other goes down)*
 
 ---
-*Happy Machine Learning!*
+
