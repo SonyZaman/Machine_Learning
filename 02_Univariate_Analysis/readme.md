@@ -9,38 +9,53 @@ The code in `02_Univariate_Analysis.ipynb` demonstrates how we approach Univaria
 ## 1. Analyzing Categorical Data
 Categorical data consists of discrete groups or labels (e.g., Male/Female, Survived/Died, City names). We analyze them using frequency counts.
 
-### a. Countplot (`sns.countplot`)
-- **What it does:** Creates a bar chart where the height of each bar represents the absolute count (frequency) of each category.
-- **Code used:** `sns.countplot(df['Embarked'])`
-- **Why use it:** To quickly see which category is the most or least common.
+### a. Countplot
+**What it does:** Creates a bar chart where the height of each bar represents the absolute count (frequency) of each category.
+**Why use it:** To quickly see which category is the most or least common.
+```python
+import seaborn as sns
+sns.countplot(df['Embarked'])
+```
 
-### b. Pie Chart (`.plot(kind='pie')`)
-- **What it does:** Represents the categories as slices of a pie, showing their relative percentage of the whole.
-- **Code used:** `df['Sex'].value_counts().plot(kind='pie', autopct='%.2f')`
-- **Why use it:** To easily visualize the proportion (e.g., "What percentage of passengers were male?").
+### b. Pie Chart
+**What it does:** Represents the categories as slices of a pie, showing their relative percentage of the whole.
+**Why use it:** To easily visualize the proportion (e.g., "What percentage of passengers embarked from 'S'?").
+```python
+df['Embarked'].value_counts().plot(kind='pie', autopct='%.2f')
+```
 
 ---
 
 ## 2. Analyzing Numerical Data
 Numerical data consists of continuous measurable numbers (e.g., Age, Fare, Height). We analyze them by looking at their distribution and spread.
 
-### a. Histogram (`plt.hist`)
-- **What it does:** Groups continuous numbers into "bins" (ranges) and shows how many data points fall into each bin.
-- **Why use it:** To see the general shape of the data spread.
+### a. Histogram
+**What it does:** Groups continuous numbers into "bins" (ranges) and shows how many data points fall into each bin.
+**Why use it:** To see the general shape of the data spread.
+```python
+import matplotlib.pyplot as plt
+plt.hist(df['Age'])
+```
 
-### b. Distplot (`sns.distplot`)
-- **What it does:** Similar to a histogram, but it overlays a smooth curve called a Probability Density Function (KDE). 
-- **Code used:** `sns.distplot(df['Age'])`
-- **Why use it:** The smooth curve makes it much easier to see if the data follows a normal distribution (bell curve) or if it is skewed left/right.
+### b. Histplot with KDE
+**What it does:** Draws a histogram with a smooth KDE (Kernel Density Estimation) curve overlaid on top of it.
+**Why use it:** The smooth KDE curve estimates the shape of the data, making it much easier to see if the data follows a normal distribution (bell curve) or if it is skewed left/right, without the visual noise of the jagged histogram bars.
+```python
+sns.histplot(df['Age'], kde=True)
+```
 
-### c. Boxplot (`sns.boxplot`)
-- **What it does:** Visualizes the 5-number statistical summary: Minimum, First Quartile (25%), Median (50%), Third Quartile (75%), and Maximum.
-- **Code used:** `sns.boxplot(df['Age'])`
-- **Why use it:** It is the absolute best tool for instantly identifying **Outliers** (data points that fall far outside the normal range, shown as dots outside the "whiskers").
+### c. Boxplot
+**What it does:** Visualizes the 5-number statistical summary: Minimum, First Quartile (25%), Median (50%), Third Quartile (75%), and Maximum.
+**Why use it:** It is the absolute best tool for instantly identifying **Outliers** (data points that fall far outside the normal range, shown as single dots outside the "whiskers").
+```python
+sns.boxplot(df['Age'])
+```
 
 ### d. Mathematical Metrics
-Instead of graphs, we can also extract specific mathematical numbers to understand the distribution:
-- `df['Age'].min()` : Finds the absolute lowest value.
-- `df['Age'].max()` : Finds the absolute highest value.
-- `df['Age'].mean()` : Calculates the average.
-- `df['Age'].skew()` : Measures the asymmetry of the distribution. A skew of `0` means it is perfectly symmetrical. A positive/negative skew means the tail is pulled to the right/left.
+Instead of graphs, we can also extract specific mathematical numbers to understand the numerical distribution mathematically:
+```python
+df['Age'].min()   # Finds the absolute lowest value
+df['Age'].max()   # Finds the absolute highest value
+df['Age'].mean()  # Calculates the average
+df['Age'].skew()  # Measures asymmetry (0 = perfect bell curve)
+```
