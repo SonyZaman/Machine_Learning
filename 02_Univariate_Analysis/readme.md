@@ -1,4 +1,4 @@
-# Step 2: Univariate Analysis
+# Univariate Analysis
 
 **Definition:** Univariate Analysis is the simplest form of analyzing data. "Uni" means "one", so in this step, we analyze data taking **one variable (column) at a time**. Our goal is not to find relationships between different variables (like age vs. survival), but rather to understand the distribution, frequency, and central tendency of a single variable in isolation.
 
