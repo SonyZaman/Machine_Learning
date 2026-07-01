@@ -1,4 +1,4 @@
-# Understanding Your Data
+# Understanding Data
 
 Before we can clean data or build machine learning models, we must intimately understand the dataset we are working with. The `01_Understanding_Data.ipynb` notebook demonstrates the essential first step of any Data Science project: **Data Profiling**.
 
