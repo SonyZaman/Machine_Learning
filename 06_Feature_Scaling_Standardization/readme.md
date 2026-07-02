@@ -1,5 +1,8 @@
 # Feature Scaling: Standardization
 
+*(Below is the full visual summary of the concepts covered in this document)*
+![Standardization Notes Summary](standardization_notes.png)
+
 Feature Scaling is one of the most critical steps in data preprocessing. It ensures that all numerical features in our dataset have equal weight when training a machine learning model.
 
 ---
@@ -78,18 +81,18 @@ Here is a visual representation of what happens to the data before and after Sta
 
 ```text
        BEFORE STANDARDIZATION                       AFTER STANDARDIZATION
-           (raw features)                       (mean centering & SD scaling)
+       (Data is far from origin)                    (Data is Mean-Centered & Scaled)
                                                             
-   Salary                                         Salary' 
+   Salary                                         Salary' (Standardized)
      │                                              │      
      │                                              │       (Mean = 0, SD = 1)
-     │        [Original Data Cluster]               │     ╭───────╮
-     │          x   x   x   x                       │    ╭╯ x   x ╰╮
-     │        x   x   x   x   x                     ├─── │ x  x  x │ ─── Age'
-     │          x   x   x   x                       │    ╰╮ x   x ╭╯
-     │                                              │     ╰───┬───╯
-     └─────────────────────────────── Age           │         │
-    (0,0)                                         (0,0)     SD=1
+     │        [Original Data Cluster]               │      
+     │          x   x   x   x                      x x       
+     │        x   x   x   x   x                  x x x x──────────────  Age' (Standardized)                                x x 
+     │          x   x   x   x                       │      
+     │                                              │      
+     └─────────────────────────────── Age           │      
+    (0,0)                                         (0,0)
 ```
 
 ### Key Takeaways from the Visual:
