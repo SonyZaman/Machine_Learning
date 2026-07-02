@@ -96,3 +96,17 @@ Here is a visual representation of what happens to the data before and after Sta
 1. **The Shape is Preserved:** Notice that the relative arrangement of the 'x' data points doesn't change. Standardization does not destroy the relationships in your data; it just moves and shrinks it.
 2. **The Origin `(0,0)` is the New Mean:** The center of the data cluster is exactly at the origin. This is **Mean Centering**.
 3. **The Spread is `1`:** The data is tightly clustered, meaning Euclidean distance calculations will now treat Age and Salary perfectly equally!
+
+---
+
+## 5. When to Use Standardization?
+
+Different machine learning algorithms require feature scaling for different mathematical reasons. Here is a cheat sheet of when and why you MUST apply Standardization:
+
+| Algorithm(s) | Reason for applying feature scaling |
+|---|---|
+| **1. K-Means** | Uses the Euclidean distance measure. |
+| **2. K-Nearest-Neighbours** | Measures the distances between pairs of samples and these distances are influenced by the measurement units. |
+| **3. Principal Component Analysis (PCA)** | Tries to get the feature with maximum variance. |
+| **4. Artificial Neural Network** | Applies Gradient Descent. |
+| **5. Gradient Descent** | Theta calculation becomes faster after feature scaling, and the learning rate in the update equation of Stochastic Gradient Descent is the same for every parameter. |
