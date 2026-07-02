@@ -78,18 +78,18 @@ Here is a visual representation of what happens to the data before and after Sta
 
 ```text
        BEFORE STANDARDIZATION                       AFTER STANDARDIZATION
-       (Data is far from origin)                    (Data is Mean-Centered & Scaled)
+           (raw features)                       (mean centering & SD scaling)
                                                             
-   Salary                                         Salary' (Standardized)
+   Salary                                         Salary' 
      │                                              │      
      │                                              │       (Mean = 0, SD = 1)
-     │        [Original Data Cluster]               │      
-     │          x   x   x   x                       │      x x 
-     │        x   x   x   x   x                     ├─── x x x x ─── Age' (Standardized)
-     │          x   x   x   x                       │      x x
-     │                                              │      
-     └─────────────────────────────── Age           │      
-    (0,0)                                         (0,0)
+     │        [Original Data Cluster]               │     ╭───────╮
+     │          x   x   x   x                       │    ╭╯ x   x ╰╮
+     │        x   x   x   x   x                     ├─── │ x  x  x │ ─── Age'
+     │          x   x   x   x                       │    ╰╮ x   x ╭╯
+     │                                              │     ╰───┬───╯
+     └─────────────────────────────── Age           │         │
+    (0,0)                                         (0,0)     SD=1
 ```
 
 ### Key Takeaways from the Visual:
