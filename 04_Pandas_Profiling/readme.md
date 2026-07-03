@@ -1,9 +1,5 @@
 # Pandas Profiling (YData Profiling)
 
-> **Day 22 | 100 Days of Machine Learning — CampusX**
->
-> 🔗 Video: [Pandas Profiling | Day 22 | 100 Days of Machine Learning](https://www.youtube.com/watch?v=E69Lg2ZgOxg)
-
 ---
 
 ## What is Pandas Profiling?
