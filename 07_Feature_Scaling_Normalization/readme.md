@@ -1,12 +1,9 @@
-# 📊 Feature Scaling — Normalization
+# Feature Scaling — Normalization
 
-> **Day 25 | 100 Days of Machine Learning — CampusX**
->
-> 🔗 Video: [Feature Scaling - Normalization | MinMaxScaling | MaxAbsScaling | RobustScaling](https://youtu.be/eBrGyuA2MIg)
 
 ---
 
-## 📌 What is Normalization?
+## What is Normalization?
 
 **Normalization** is a technique often applied as part of **data preparation for machine learning**.
 
@@ -16,7 +13,7 @@ In simple words: make all features live in the **same numerical neighborhood** s
 
 ---
 
-## 🌿 Types of Normalization
+## Types of Normalization
 
 Feature Scaling has two main branches. Normalization sits on the right:
 
@@ -40,12 +37,12 @@ Feature Scaling has two main branches. Normalization sits on the right:
 
 ---
 
-## 1️⃣ MinMax Scaling
+## 1. MinMax Scaling
 
 ### Intuition
 MinMax Scaling **squeezes** all values into the range `[0, 1]`.
-- The **minimum** value in a column becomes → `0`
-- The **maximum** value in a column becomes → `1`
+- The **minimum** value in a column becomes -> `0`
+- The **maximum** value in a column becomes -> `1`
 - Everything else falls **proportionally** in between
 
 ### Formula
@@ -67,17 +64,17 @@ X_i'  =  ──────────────────
 
 ---
 
-### 🔢 Step-by-Step Example (Weight Column)
+### Step-by-Step Example (Weight Column)
 
 Suppose we have a `Weight` column from the dataset:
 
 | Row | Weight (kg) |
 |-----|------------|
-| 1   | 130 ← max  |
+| 1   | 130 (max)  |
 | 2   | 67         |
 | 3   | 81         |
 | 4   | 61         |
-| 5   | 32 ← min   |
+| 5   | 32 (min)   |
 | 6   | 54         |
 
 - **X_min = 32**, **X_max = 130**
@@ -86,21 +83,21 @@ Suppose we have a `Weight` column from the dataset:
 ```
 X' = (130 - 32) / (130 - 32)
    =    98      /     98
-   =    1.0  ✅
+   =    1.0
 ```
 
 **Scaling the Minimum value (32 kg):**
 ```
 X' = (32 - 32) / (130 - 32)
    =     0     /     98
-   =    0.0  ✅
+   =    0.0
 ```
 
 **Scaling an intermediate value (67 kg):**
 ```
 X' = (67 - 32) / (130 - 32)
    =    35     /     98
-   =   0.357  ✅
+   =   0.357
 ```
 
 **After scaling — the transformed Weight column:**
@@ -114,42 +111,42 @@ X' = (67 - 32) / (130 - 32)
 | 5   | 32         | **0.000**       |
 | 6   | 54         | **0.224**       |
 
-> ✅ All values are now squeezed into a clean `[0, 1]` range!
+> All values are now squeezed into a clean `[0, 1]` range!
 
 ---
 
-## 2️⃣ Visualizing MinMax Scaling
+## 2. Visualizing MinMax Scaling
 
-The key transformation: the data cloud **moves** and **squishes** into a perfectly bounded `[0, 1] × [0, 1]` box.
+The key transformation: the data cloud **moves** and **squishes** into a perfectly bounded `[0, 1] x [0, 1]` box.
 
 ```
   BEFORE MinMax Scaling                     AFTER MinMax Scaling
   (Original units: kg, cm, etc.)            (All values between 0 and 1)
 
   Height                                    Height'
-    │                                       1.0 ┼ ─ ─ ─ ─ ─ ─ ─ ─ ┐
- 180│         ●  ●                              │   ● ●  ●          │
-    │       ●  ●  ●                          0.5┼     ● ●  ●       │
- 160│     ●   ●  ●                              │  ●    ●  ●        │
-    │       ●  ●                            0.0 ┼ ─ ─ ─ ─ ─ ─ ─ ─ ┘
+    │                                       1.0 ┼ ─ ─ ─ ─ ─ ─ ─ ─┐
+ 180│         ●  ●                              │   ● ●  ●       │
+    │       ●  ●  ●                          0.5┼     ● ●  ●     │
+ 160│     ●   ●  ●                              │  ●    ●  ●     │
+    │       ●  ●                            0.0 ┼ ─ ─ ─ ─ ─ ─  ─ ┘
  140│                                           └──┼─────────────┼── Weight'
     └─────────────────── Weight              (0,0) 0             1
        40   60   80  100
 ```
 
-### 📝 Key Takeaways
+### Key Takeaways
 
 | Property | MinMax Scaling | Standardization |
 |---|---|---|
 | **Output Range** | Always `[0, 1]` | No fixed range (can be -∞ to +∞) |
 | **Mean after scaling** | Not necessarily 0 | Always **0** |
-| **Affected by outliers?** | ⚠️ **YES** — heavily | Less affected |
-| **Shape of data preserved?** | ✅ Yes | ✅ Yes |
-| **Zeros preserved?** | ❌ No | ❌ No |
+| **Affected by outliers?** | **YES** — heavily | Less affected |
+| **Shape of data preserved?** | Yes | Yes |
+| **Zeros preserved?** | No | No |
 
 ---
 
-## ⚠️ Impact of Outliers on MinMax Scaling
+## Impact of Outliers on MinMax Scaling
 
 This is the **biggest weakness** of MinMax Scaling.
 
@@ -161,11 +158,11 @@ Now a normal person weighing 67 kg gets scaled to:
 X' = (67 - 32) / (500 - 32) = 35 / 468 = 0.074
 ```
 
-> 🚨 All "normal" data gets **crushed** into the tiny range `[0.0, 0.1]`, making them nearly indistinguishable. This is why **Robust Scaling** was invented — it is immune to outliers!
+> All "normal" data gets **crushed** into the tiny range `[0.0, 0.1]`, making them nearly indistinguishable. This is why **Robust Scaling** was invented — it is immune to outliers!
 
 ---
 
-## 💻 Code (Scikit-Learn)
+## Code (Scikit-Learn)
 
 ```python
 import pandas as pd
@@ -202,11 +199,11 @@ print(X_scaled_df.head())
 | 0.708   | 0.121      | 0.340 |
 | 0.695   | 0.246      | 0.574 |
 
-> ✅ Notice how `Alcohol = 14.23` (the max) maps to exactly `1.000`!
+> Notice how `Alcohol = 14.23` (the max) maps to exactly `1.000`!
 
 ---
 
-## 📊 Visualizing the Wine Dataset (Before vs After)
+## Visualizing the Wine Dataset (Before vs After)
 
 ```python
 import seaborn as sns
@@ -236,13 +233,13 @@ plt.show()
 
 ---
 
-## 🆚 Normalization vs Standardization — When to Use?
+## Normalization vs Standardization — When to Use?
 
 | Situation | Use |
 |---|---|
-| Data has **no significant outliers** | ✅ MinMax Normalization |
-| You need values strictly between `0` and `1` | ✅ MinMax Normalization |
-| You are using a **Neural Network** or **image data** | ✅ MinMax Normalization |
-| Data has **significant outliers** | ✅ Robust Scaling |
-| You are using **KNN, K-Means, PCA, SVM** | ✅ Standardization (Z-score) |
-| Data distribution is **Gaussian (Normal)** | ✅ Standardization (Z-score) |
+| Data has **no significant outliers** | MinMax Normalization |
+| You need values strictly between `0` and `1` | MinMax Normalization |
+| You are using a **Neural Network** or **image data** | MinMax Normalization |
+| Data has **significant outliers** | Robust Scaling |
+| You are using **KNN, K-Means, PCA, SVM** | Standardization (Z-score) |
+| Data distribution is **Gaussian (Normal)** | Standardization (Z-score) |
